@@ -15,7 +15,7 @@
 
             <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
                 <div class="flex-grow-1">
-                    <h4 class="fs-18 fw-semibold m-0">Quản lý danh sách sản phẩm</h4>
+                    <h4 class="fs-18 fw-semibold m-0">Chi tiết sản phẩm</h4>
                 </div>
             </div>
         </div>
@@ -26,77 +26,157 @@
                     <div class="card-header d-flex justify-content-between ">
                         <h5 class="card-title mb-0 align-content-center">{{ $title }}</h5>
 
-                        <a href="{{ route('admins.sanphams.create') }}" class="btn btn-success "><i
-                                data-feather="plus-square"></i>Thêm sản phẩm</a>
+                        {{-- <a href="{{ route('admins.sanphams.create') }}" class="btn btn-success "><i
+                                data-feather="plus-square"></i>Thêm sản phẩm</a> --}}
                     </div><!-- end card header -->
 
                     <div class="card-body">
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-
-                        @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
-
                         <div class="table-responsive">
-                            <table class="table table-striped mb-0">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">STT</th>
-                                        <th scope="col">Mã sản phẩm</th>
-                                        <th scope="col">Hình ảnh</th>
-                                        <th scope="col">Tên sản phẩm</th>
-                                        <th scope="col">Danh mục</th>
-                                        <th scope="col">Giá sản phẩm</th>
-                                        <th scope="col">Giá khuyến mãi</th>
-                                        <th scope="col">Số lượng</th>
-                                        {{-- <th scope="col">Bình luận</th> --}}
-                                        <th scope="col">Trạng thái</th>
-                                        <th scope="col">Hành động</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($listdetail as $index => $item)
-                                        <tr>
-                                            <th scope="row">{{ $index + 1 }}</th>
-                                            <td>{{ $item->ma_san_pham }}</td>
-                                            <td>
-                                                <img src="{{ Storage::url($item->hinh_anh) }}" width="100px" height="60px"
-                                                    alt="">
-                                            </td>
-                                            <td>{{ $item->ten_san_pham }}</td>
-                                            <td>{{ $item->danhMuc->ten_danh_muc }}</td>
-                                            <td>{{number_format($item->gia) }}</td>
-                                            <td>{{ number_format($item->gia_khuyen_mai) }}</td>
-                                            <td>{{ $item->so_luong }}</td>
-                                            {{-- <td>{{ $item->binhluan->noi_dung }}</td> --}}
+                            <form action="{{ route('admins.sanphams.store') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
 
-                                            <td class="{{ $item->is_type == true ? 'text-info' : 'text-danger' }}">
-                                                {{ $item->is_type == true ? 'Hiển thị' : 'Ẩn' }}</td>
-                                            <td>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label for="ma_san_pham" class="form-label">Mã sản phẩm</label>
+                                            <input type="text" id="ma_san_pham" name="ma_san_pham" class="form-control"
+                                                value="{{ $sanpham->ma_san_pham }}">
+                                        </div>
 
-                                                        <a href="{{ route('admins.sanphams.edit', $item->id) }}"><i
-                                                            class="mdi mdi-pencil text-muted fs-18 rounded-2 border p-1 me-1"></i></a>
+                                        <div class="mb-3">
+                                            <label for="ten_san_pham" class="form-label">Tên sản phẩm</label>
+                                            <input type="text" id="ten_san_pham" name="ten_san_pham"
+                                                value="{{ $sanpham->ten_san_pham }}" class="form-control">
+                                        </div>
 
-                                                <form action="{{ route('admins.sanphams.destroy',$item->id) }}" method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="border-0 bg-white">
-                                                        <i class="mdi mdi-delete text-muted fs-18 rounded-2 border p-1" onclick="return(confirm('Bạn có muốn xóa không ??'))"></i>
+                                        <div class="mb-3">
+                                            <label for="gia" class="form-label">Giá sản phẩm</label>
+                                            <input type="number" id="gia" name="gia" class="form-control"
+                                                value="{{ $sanpham->gia }}">
 
-                                                    </button>
-                                                   
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="gia_khuyen_mai" class="form-label">Giá khuyến mãi</label>
+                                            <input type="number" id="gia_khuyen_mai" name="gia_khuyen_mai"
+                                                value="{{ $sanpham->gia_khuyen_mai }}" class="form-control">
+
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="danh_muc_id" class="form-label">Danh mục</label>
+                                            <input type="text" id="danh_muc_id" name="danh_muc_id"
+                                                value="{{ $sanpham->danhMuc->ten_danh_muc }}" class="form-control">
+
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="so_luong" class="form-label">Số lượng</label>
+                                            <input type="number" id="so_luong" name="so_luong"
+                                                value="{{ $sanpham->so_luong }}" class="form-control">
+
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="ngay_nhap" class="form-label">Ngày nhập</label>
+                                            <input type="date" id="ngay_nhap"
+                                                name="ngay_nhap"value="{{ $sanpham->ngay_nhap }}" class="form-control ">
+
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="mo_ta_ngan" class="form-label">Mô tả ngắn</label>
+
+                                            <input type="text" id="mo_ta_ngan"
+                                                name="mo_ta_ngan"value="{{ $sanpham->mo_ta_ngan }}" class="form-control ">
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-lg-8">
+
+                                        <div class="mb-3">
+                                            <label for="noi_dung" class="form-label">Mô tả chi tiết</label>
+
+                                            <input type="text" id="noi_dung"
+                                                name="noi_dung" value="{!!$sanpham->noi_dung!!}" class="form-control ">
+
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="hinh_anh" class="form-label">Hình ảnh</label>
+                                        
+                                            <img src="{{ Storage::url($sanpham->hinh_anh) }}" alt="Hình ảnh sản phẩm"
+                                                id="img_DM" onchange="showImage(event)" style="width: 100px;">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="mo_ta_ngan" class="form-label">Bình luận của sản phẩm này</label>
+
+                                            <input type="text" id="mo_ta_ngan"
+                                                name="mo_ta_ngan"value="{{ $sanpham->mo_ta_ngan }}" class="form-control ">
+                                        </div>
+
+                                        <label for="hinh_anh" class="form-label">Tùy chỉnh khác</label>
+                                    <div class="form-switch mb-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input bg-warning" type="checkbox" id="is_new"
+                                                value="{{ $sanpham->is_new }}" name="is_new" checked>
+                                            <label class="form-check-label" for="is_new">New</label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input  bg-danger" type="checkbox" id="is_hot"
+                                                value="{{ $sanpham->is_hot }}" name="is_hot" checked>
+                                            <label class="form-check-label" for="is_hot">Hot</label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input bg-pink" type="checkbox"
+                                                id="is_hot_deal"value="{{ $sanpham->is_hot_deal }}" name="is_hot_deal"
+                                                checked>
+                                            <label class="form-check-label" for="is_hot_deal">Hot deal</label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input bg-black" type="checkbox"
+                                                id="is_show_home"value="{{ $sanpham->is_show_home }}" name="is_show_home"
+                                                checked>
+                                            <label class="form-check-label" for="is_show_home">Show home</label>
+                                        </div>
+                                    </div>
+
+
+                                    </div>
+
+                                    <fieldset class="row mb-3">
+                                        <legend class="col-form-label col-sm-2 pt-0">Trạng thái</legend>
+                                        <div class="col-sm-10 d-flex gap-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="trang_thai"
+                                                    id="trang_thai" value="1"
+                                                    {{ $sanpham->trang_thai == true ? 'checked' : '' }}>
+                                                <label class="form-check-label text-info" for="gridRadios1">
+                                                    Hiển thị
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="trang_thai"
+                                                    id="trang_thai" value="0"
+                                                    {{ $sanpham->trang_thai == false ? 'checked' : '' }}>
+                                                <label class="form-check-label text-danger" for="gridRadios2">
+                                                    Ẩn
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+
+                            </form>
                         </div>
                     </div>
                 </div>

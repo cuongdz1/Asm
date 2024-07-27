@@ -31,4 +31,9 @@ class DonHang extends Model
     {
         return $this->belongsTo(TrangThaiDonHang::class);
     }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

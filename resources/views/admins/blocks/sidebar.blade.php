@@ -73,6 +73,13 @@
                                 </a>
                             </li>
 
+                            <li>
+                                <a class='tp-link' href='#'>
+                                    <i data-feather="pie-chart"></i>
+                                    <span>Báo cáo thống kê</span>
+                                </a>
+                            </li>
+
                         </ul>
 
                     </div>

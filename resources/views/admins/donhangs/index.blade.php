@@ -64,7 +64,7 @@
                                                 {{ $item->ten_nguoi_nhan }}
                                             </td>
                                             <td>{{ $item->sdt_nguoi_nhan }}</td>
-                                            <td>{{ $item->gioi_tinh }}</td>
+                                            <td>{{ $item->gioi_tinh == 1 ? 'Nam' : 'Nữ' }}</td>
                                             <td>
                                                 <a href="{{ route('admins.donhangs.show', $item->id) }}"><i
                                                     class="mdi mdi-eye text-muted fs-18 rounded-2 border p-1 me-1"></i></a>

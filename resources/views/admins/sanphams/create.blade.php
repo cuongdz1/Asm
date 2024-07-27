@@ -88,7 +88,7 @@
                                             <option value="" selected>-- Chọn danh mục --</option>
                                             @foreach ($listDanhMuc as $item)
                                                 <option value="{{ $item->id }}"
-                                                    {{ old('Gia') == $item->id ? 'selected' : '' }}>
+                                                    {{ old('danh_muc_id') == $item->id ? 'selected' : '' }}>
                                                     {{ $item->ten_danh_muc }}</option>
                                             @endforeach
 

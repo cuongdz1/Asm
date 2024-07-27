@@ -91,9 +91,9 @@ class SanPhamController extends Controller
     {
         $title = "Chi tiết sản phẩm";
 
-        $listdetail = SanPham::orderByDesc("id")->get();
+        $sanpham = SanPham::findOrFail($id);
 
-        return view("admins.sanphams.detail", compact("title","listdetail"));
+        return view("admins.sanphams.detail", compact("title","sanpham"));
     }
 
     /**

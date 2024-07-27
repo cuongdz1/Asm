@@ -30,11 +30,11 @@ class AuthController extends Controller
         // dd($user);
         if (Auth::attempt($user)) {
             return redirect()->intended('home');
+        }elseif(Auth::attempt($admin)){
+            return redirect()->route('auth.admin');
         }
         return redirect()->back()->withErrors([
             "email" => "Thông tin người dùng không đúng",
-
-
         ]);
     }
     // đăng xuất

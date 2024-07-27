@@ -76,7 +76,8 @@
                                             <td class="{{ $item->is_type == true ? 'text-info' : 'text-danger' }}">
                                                 {{ $item->is_type == true ? 'Hiển thị' : 'Ẩn' }}</td>
                                             <td>
-                                                <a href="{{ route('admins.sanphams.show', $item->id) }}"><button class="btn btn-info">detail</button></a>
+                                                <a href="{{ route('admins.sanphams.show', $item->id) }}"><i
+                                                    class="mdi mdi-eye text-muted fs-18 rounded-2 border p-1 me-1"></i></a>
 
                                                         <a href="{{ route('admins.sanphams.edit', $item->id) }}"><i
                                                             class="mdi mdi-pencil text-muted fs-18 rounded-2 border p-1 me-1"></i></a>

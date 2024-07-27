@@ -22,7 +22,7 @@ class CheckRoleAdminMiddleware
             return $next($request);
         }
         // elseif(Auth::check() && Auth::user()->role === User::ROLE_USER){
-        //     return redirect()->route('welcome1');
+        //     return redirect()->route('welcome');
         // }
 
         abort(403);

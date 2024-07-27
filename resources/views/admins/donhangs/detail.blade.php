@@ -24,7 +24,7 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between ">
-                        <h5 class="card-title mb-0 align-content-center">{{ $title }}</h5>
+                        <h5 class="card-title mb-0 align-content-center">Đơn hàng của tài khoản: {{$Donhang->User->name}}</h5>
 
                         {{-- <a href="{{ route('admins.sanphams.create') }}" class="btn btn-success "><i
                                 data-feather="plus-square"></i>Thêm sản phẩm</a> --}}
@@ -85,16 +85,14 @@
                                                 <input type="text" id="dia_chi_nguoi_nhan" name="dia_chi_nguoi_nhan"
                                                 value="{{$Donhang->dia_chi_nguoi_nhan}}" class="form-control">
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="user_id" class="form-label">Tên tài khoản</label>
-                                                <input type="text" id="user_id" name="user_id"
-                                                value="{{$Donhang->ma_don_hang}}" class="form-control">
-                                            </div>
+                                         
                                             <div class="mb-3">
                                                 <label for="trang_thai_don_hang_id" class="form-label">Trạng thái</label>
                                                 <input type="text" id="trang_thai_don_hang_id" name="trang_thai_don_hang_id"
-                                                value="{{$Donhang->trang_thai_don_hang_id}}"class="form-control">
+                                                value="{{$Donhang->trang_thai_don_hang_id == 1 ? 'Đang kiểm tra' : 'Đã xác nhận'}}"class="form-control">
                                             </div>
+
+                                       
                                             <div class="mb-3">
                                                 <label for="ngay_dat" class="form-label">Ngày đặt</label>
                                                 <input type="text" id="ngay_dat" name="ngay_dat"
@@ -109,9 +107,7 @@
                                         </div>
 
                                         
-                                        <div class="text-center">
-                                            <a href="{{route('admins.donhangs.index')}}"><button class="btn btn-info">Quay lại</button></a>
-                                        </div>
+                                      
                                 </form>
                             </form>
                         </div>

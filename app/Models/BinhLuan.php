@@ -18,6 +18,4 @@ class BinhLuan extends Model
     {
         return $this->belongsTo(SanPham::class);
     }
-
-
 }

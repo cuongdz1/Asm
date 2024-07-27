@@ -50,7 +50,7 @@
                                         <label for="hinh_anh" class="form-label">Hình ảnh</label>
                                         <input type="file" id="hinh_anh" name="hinh_anh"
                                             class="form-control">
-                                <img  src="{{ Storage::url($danhMuc->hinh_anh) }}" alt="Hình ảnh sản phẩm" id="img_DM" onchange="showImage(event)" style="width: 100px;">
+                                            <img  src="{{ Storage::url($danhMuc->hinh_anh) }}" alt="Hình ảnh sản phẩm" id="img_DM" onchange="showImage(event)" style="width: 100px;">
                                     </div>
                                 </div>
                                 <fieldset class="row mb-3">
