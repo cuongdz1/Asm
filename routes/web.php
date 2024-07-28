@@ -25,7 +25,7 @@ use App\Http\Middleware\CheckRoleAdminMiddleware;
 
 
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('welcome');
 });
 
@@ -74,11 +74,6 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admins')
 
 
         Auth::routes();
-
-
-        
-
-        Route::resource('product', ProductController::class);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

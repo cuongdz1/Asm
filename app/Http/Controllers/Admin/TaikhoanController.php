@@ -19,6 +19,7 @@ class TaikhoanController extends Controller
         $listTK = DB::table("users")
             ->orderBy("id", "desc")
             ->get();
+            
 
         return view("admins.taikhoans.index", compact("title", "listTK"));
     }

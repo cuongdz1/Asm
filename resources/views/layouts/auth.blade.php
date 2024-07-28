@@ -24,6 +24,7 @@
 </head>
 
 <body>
+	
 	<!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -42,6 +43,7 @@
 						<a href="login-9.html" class="fxt-logo"><img src="{{asset('assets/auth/img/logo-9.png')}}"  alt="Logo "></a>
 					</div>
 				</div>
+				
 				<div class="col-lg-6">
 					@yield('content')
 				</div>

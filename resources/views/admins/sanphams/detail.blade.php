@@ -156,17 +156,17 @@
                                         <legend class="col-form-label col-sm-2 pt-0">Trạng thái</legend>
                                         <div class="col-sm-10 d-flex gap-2">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="trang_thai"
-                                                    id="trang_thai" value="1"
-                                                    {{ $sanpham->trang_thai == true ? 'checked' : '' }}>
+                                                <input class="form-check-input" type="radio" name="is_type"
+                                                    id="is_type" 
+                                                    {{ $sanpham->is_type == true ? 'checked' : '' }}>
                                                 <label class="form-check-label text-info" for="gridRadios1">
                                                     Hiển thị
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="trang_thai"
-                                                    id="trang_thai" value="0"
-                                                    {{ $sanpham->trang_thai == false ? 'checked' : '' }}>
+                                                <input class="form-check-input" type="radio" name="is_type"
+                                                    id="is_type" 
+                                                    {{ $sanpham->is_type == false ? 'checked' : '' }}>
                                                 <label class="form-check-label text-danger" for="gridRadios2">
                                                     Ẩn
                                                 </label>
